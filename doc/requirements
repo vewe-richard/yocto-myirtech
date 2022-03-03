@@ -4,35 +4,43 @@ SOM Used:
 
 
 Applications to add to Yocto build:
-	minicom
-	ldd
+	minicom : ./poky/meta/recipes-extended/minicom
+	ldd	: TODO
 	lrzsz - Available from https://ohse.de/uwe/software/lrzsz.html
+                : ./poky/meta/recipes-bsp/lrzsz
 	pcsc
+		: ./meta-openembedded/meta-oe/recipes-support/pcsc-lite
 	openssl
+		: ./poky/meta/recipes-connectivity/openssl
 	curl
+		: ./poky/meta/recipes-support/curl
 	libnfc + examples - https://github.com/nfc-tools/libnfc
-	dig
+		: ./meta-openembedded/meta-oe/recipes-core/libnfc
+	dig   	: TODO
 	Hostname resolution via "nss-mdns" and "avahi" see https://fedoramagazine.org/find-systems-easily-lan-mdns/
-	gdbserver
+		: ./poky/meta/recipes-connectivity/avahi
+		: ./poky/meta/recipes-connectivity/libnss-mdns
+	gdbserver : TODO	
 	
 Libraries Necessary:
 	(The libraries associated with the above programs)
 	Proprietary libNBDevices -  depends on libusb-1.0.20-1 or newer
+	: ./poky/meta/recipes-support/libusb
 
 List of libraries used for building our custom application to ensure are added:
-	NBDevices
-	ssl
-	crypto
-	udev
-	m
-	pcsclite
-	sqlite3
-	nfc
-	curl
-	i2c
-	rt
-	wiringPi - Will need to replace this.
-	pthread
+	NBDevices : TODO
+	ssl	  : ./poky/meta/recipes-connectivity/openssl
+	crypto	  : ./poky/meta/recipes-kernel/cryptodev
+	udev	  : ./meta-myir/meta-bsp/recipes-core/udev
+	m	  : should be in libc?
+	pcsclite  : TODO
+	sqlite3	  : ./poky/meta/recipes-support/sqlite/
+	nfc	  : ./meta-openembedded/meta-oe/recipes-core/libnfc
+	curl	  : ./poky/meta/recipes-support/curl
+	i2c       : ./poky/meta/recipes-devtools/i2c-tools
+	rt	  : should be in libc?
+	wiringPi - Will need to replace this.  : TODO
+	pthread   : should be in libc?
 
 Output of LDD from Raven4
 pi@raven-pi:~$ ldd raven 
@@ -88,29 +96,36 @@ pi@raven-pi:~$ ldd raven
 Kernel Modifications:
 	Add SIMCOM7600E Kernel driver. Refer to sim7500_sim7600_series_linux_drivers_and_integration_user_guide_v2.01.zip
 	Add ESP32 Wifi + BT Driver - https://github.com/espressif/esp-hosted
+	[Answer] Add patch in the kernel recipe
 	
 UBoot modifications:
 	Setup 2 pins on startup as outputs driven high
+	[Answer] Change uboot and compile uboot
 	
 How to modify uBoot environment variables from the kernel:
 	See https://www.emcraft.com/imxrt1050-evk-board/managing-uboot-env-from-linux
 	Want to enable or disable the serial debug console at will
+	[Answer] Follow the link
 	
 Speed up boot:
 	Adding quiet to cmdline parameters is one method I know.
+	[Answer] uboot waiting time, disable unused startup services(systemd-analyze?), minimal kernel
 	
 Setup Device Tree with necessary pin functions:
 	Pin layout file using NXP tool is available.
+	[Answer] update device tree
 
 File System changes (See file (Raven Filesystem Example.zip)):
 	Add systemd service to startup custom program on startup
 	libnfc.conf file in /etc/nfc
 	udhcpc.conf file in /etc/udhcpc
 	Blacklist necessary drivers in modprobe.d
+	[Answer] ./meta-myir/meta-bsp/recipes-core/systemd
 	
 Git repo for the build:
 	How to manage the build
+	[Answer] manage private layer
 	
 Create SDK
-
+	[Answer] in a docker/vm?
 	
