@@ -1,0 +1,116 @@
+SOM Used:
+	http://www.myirtech.com/list.asp?id=644
+	Downloads - http://d.myirtech.com/MYD-Y6ULX/ download the ISO file (MYD-Y6ULX-5.4-20210122.iso) to download everything.
+
+
+Applications to add to Yocto build:
+	minicom
+	ldd
+	lrzsz - Available from https://ohse.de/uwe/software/lrzsz.html
+	pcsc
+	openssl
+	curl
+	libnfc + examples - https://github.com/nfc-tools/libnfc
+	dig
+	Hostname resolution via "nss-mdns" and "avahi" see https://fedoramagazine.org/find-systems-easily-lan-mdns/
+	gdbserver
+	
+Libraries Necessary:
+	(The libraries associated with the above programs)
+	Proprietary libNBDevices -  depends on libusb-1.0.20-1 or newer
+
+List of libraries used for building our custom application to ensure are added:
+	NBDevices
+	ssl
+	crypto
+	udev
+	m
+	pcsclite
+	sqlite3
+	nfc
+	curl
+	i2c
+	rt
+	wiringPi - Will need to replace this.
+	pthread
+
+Output of LDD from Raven4
+pi@raven-pi:~$ ldd raven 
+	linux-vdso.so.1 (0x7efbb000)
+	/usr/lib/arm-linux-gnueabihf/libarmmem-${PLATFORM}.so => /usr/lib/arm-linux-gnueabihf/libarmmem-v7l.so (0x76e5c000)
+	libNBDevices.so => /lib/arm-linux-gnueabihf/libNBDevices.so (0x76d07000)
+	libcrypto.so.1.1 => /usr/lib/arm-linux-gnueabihf/libcrypto.so.1.1 (0x76aee000)
+	libudev.so.1 => /lib/arm-linux-gnueabihf/libudev.so.1 (0x76abe000)
+	libm.so.6 => /lib/arm-linux-gnueabihf/libm.so.6 (0x76a3c000)
+	libpcsclite.so.1 => /usr/lib/arm-linux-gnueabihf/libpcsclite.so.1 (0x76a23000)
+	libsqlite3.so.0 => /usr/lib/arm-linux-gnueabihf/libsqlite3.so.0 (0x7691b000)
+	libnfc.so.5 => /usr/lib/arm-linux-gnueabihf/libnfc.so.5 (0x768ea000)
+	libcurl.so.4 => /usr/lib/arm-linux-gnueabihf/libcurl.so.4 (0x76865000)
+	libi2c.so.0 => /usr/lib/arm-linux-gnueabihf/libi2c.so.0 (0x76853000)
+	libwiringPi.so => /usr/lib/libwiringPi.so (0x76835000)
+	libpthread.so.0 => /lib/arm-linux-gnueabihf/libpthread.so.0 (0x7680b000)
+	libc.so.6 => /lib/arm-linux-gnueabihf/libc.so.6 (0x766bd000)
+	/lib/ld-linux-armhf.so.3 (0x76f17000)
+	libdl.so.2 => /lib/arm-linux-gnueabihf/libdl.so.2 (0x766aa000)
+	librt.so.1 => /lib/arm-linux-gnueabihf/librt.so.1 (0x76693000)
+	libusb-1.0.so => /usr/lib/arm-linux-gnueabihf/libusb-1.0.so (0x7666e000)
+	libusb-0.1.so.4 => /lib/arm-linux-gnueabihf/libusb-0.1.so.4 (0x76654000)
+	libnghttp2.so.14 => /usr/lib/arm-linux-gnueabihf/libnghttp2.so.14 (0x76625000)
+	libidn2.so.0 => /usr/lib/arm-linux-gnueabihf/libidn2.so.0 (0x765f9000)
+	librtmp.so.1 => /usr/lib/arm-linux-gnueabihf/librtmp.so.1 (0x765d0000)
+	libssh2.so.1 => /usr/lib/arm-linux-gnueabihf/libssh2.so.1 (0x76598000)
+	libpsl.so.5 => /usr/lib/arm-linux-gnueabihf/libpsl.so.5 (0x76578000)
+	libssl.so.1.1 => /usr/lib/arm-linux-gnueabihf/libssl.so.1.1 (0x764f9000)
+	libgssapi_krb5.so.2 => /usr/lib/arm-linux-gnueabihf/libgssapi_krb5.so.2 (0x764af000)
+	libkrb5.so.3 => /usr/lib/arm-linux-gnueabihf/libkrb5.so.3 (0x763f4000)
+	libk5crypto.so.3 => /usr/lib/arm-linux-gnueabihf/libk5crypto.so.3 (0x763b4000)
+	libcom_err.so.2 => /lib/arm-linux-gnueabihf/libcom_err.so.2 (0x763a1000)
+	libldap_r-2.4.so.2 => /usr/lib/arm-linux-gnueabihf/libldap_r-2.4.so.2 (0x7634c000)
+	liblber-2.4.so.2 => /usr/lib/arm-linux-gnueabihf/liblber-2.4.so.2 (0x76330000)
+	libz.so.1 => /lib/arm-linux-gnueabihf/libz.so.1 (0x76305000)
+	libcrypt.so.1 => /lib/arm-linux-gnueabihf/libcrypt.so.1 (0x762c3000)
+	libunistring.so.2 => /usr/lib/arm-linux-gnueabihf/libunistring.so.2 (0x76147000)
+	libgnutls.so.30 => /usr/lib/arm-linux-gnueabihf/libgnutls.so.30 (0x75fa4000)
+	libhogweed.so.4 => /usr/lib/arm-linux-gnueabihf/libhogweed.so.4 (0x75f65000)
+	libnettle.so.6 => /usr/lib/arm-linux-gnueabihf/libnettle.so.6 (0x75f21000)
+	libgmp.so.10 => /usr/lib/arm-linux-gnueabihf/libgmp.so.10 (0x75ea8000)
+	libgcrypt.so.20 => /lib/arm-linux-gnueabihf/libgcrypt.so.20 (0x75dce000)
+	libkrb5support.so.0 => /usr/lib/arm-linux-gnueabihf/libkrb5support.so.0 (0x75db4000)
+	libkeyutils.so.1 => /lib/arm-linux-gnueabihf/libkeyutils.so.1 (0x75da0000)
+	libresolv.so.2 => /lib/arm-linux-gnueabihf/libresolv.so.2 (0x75d7c000)
+	libsasl2.so.2 => /usr/lib/arm-linux-gnueabihf/libsasl2.so.2 (0x75d53000)
+	libp11-kit.so.0 => /usr/lib/arm-linux-gnueabihf/libp11-kit.so.0 (0x75c4e000)
+	libtasn1.so.6 => /usr/lib/arm-linux-gnueabihf/libtasn1.so.6 (0x75c2e000)
+	libgpg-error.so.0 => /lib/arm-linux-gnueabihf/libgpg-error.so.0 (0x75c04000)
+	libffi.so.6 => /usr/lib/arm-linux-gnueabihf/libffi.so.6 (0x75bec000)
+	libgcc_s.so.1 => /lib/arm-linux-gnueabihf/libgcc_s.so.1 (0x75bbf000)
+	
+Kernel Modifications:
+	Add SIMCOM7600E Kernel driver. Refer to sim7500_sim7600_series_linux_drivers_and_integration_user_guide_v2.01.zip
+	Add ESP32 Wifi + BT Driver - https://github.com/espressif/esp-hosted
+	
+UBoot modifications:
+	Setup 2 pins on startup as outputs driven high
+	
+How to modify uBoot environment variables from the kernel:
+	See https://www.emcraft.com/imxrt1050-evk-board/managing-uboot-env-from-linux
+	Want to enable or disable the serial debug console at will
+	
+Speed up boot:
+	Adding quiet to cmdline parameters is one method I know.
+	
+Setup Device Tree with necessary pin functions:
+	Pin layout file using NXP tool is available.
+
+File System changes (See file (Raven Filesystem Example.zip)):
+	Add systemd service to startup custom program on startup
+	libnfc.conf file in /etc/nfc
+	udhcpc.conf file in /etc/udhcpc
+	Blacklist necessary drivers in modprobe.d
+	
+Git repo for the build:
+	How to manage the build
+	
+Create SDK
+
+	

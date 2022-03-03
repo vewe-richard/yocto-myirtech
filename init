@@ -1,0 +1,7 @@
+#!/bin/sh
+mount -t proc none /proc
+mount -t sysfs none /sys
+#mknod /dev/sda2 b 8 2
+#mount /dev/sda2 mnt
+#chroot /mnt
+exec /bin/sh
