@@ -5,7 +5,9 @@ case $1 in
 	;;
 
 	build)
+	cd builder
 	docker build . -t jiangjqian/yocto
+	cd -
 	;;
 
 	start)

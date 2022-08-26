@@ -1,0 +1,13 @@
+1. kernel, uboot, speed up
+2. raven compiling
+3. ldd, gdbserver, NBDevices, pcsclite, wiringPi.
+4. systemd
+5. building, debugging, testing, 
+
+6. bring up the whole system, we may encounter some problems like,
+   rootfs is not mount
+   can not enter bash
+   x11?
+   network?
+   device tree?
+   

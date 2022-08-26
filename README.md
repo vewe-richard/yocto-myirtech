@@ -4,11 +4,13 @@
 Here create a container for yocto, refer
 https://tutorialadda.com/yocto/quick-start-your-first-yocto-project-build
 
+
+#in fact we did not use docker, just use ~/work/2022/yocto/poky
 ```
-./docker.sh build
-./docker.sh create
+./docker.sh build    #xxx
+./docker.sh create   #xxx
 # enter container
-./docker.sh
+./docker.sh          #xxx
 ```
 
 ### 2. build machine
@@ -16,6 +18,10 @@ https://tutorialadda.com/yocto/quick-start-your-first-yocto-project-build
 FAIL
 #### 2.2 build raspiberrypi
 Done
+https://tutorialadda.com/yocto/create-your-own-linux-image-for-the-raspberry-pi-board-using-yocto-project
+Note: there are lots of type error on this blog, be carefull
+
+Follow doc/work-log.md
 
 
 ### Appendix
