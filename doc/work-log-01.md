@@ -19,4 +19,12 @@ FILES_${PN}
 ./create_initramfs.sh
 ./qemu.sh x86-raspi
 
+#3 
+bitbake core-image-minimal
+
+
+#4 x11vnc
+bblayers.conf
+  /home/richard/work/2022/yocto/poky/meta-openembedded/meta-oe \
+bitbake vncx11
 

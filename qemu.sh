@@ -13,6 +13,8 @@ case $1 in
 	  -nographic
 
           #-cpu cortex-a7 \
+	  #-initrd initramfs.cpio.gz \
+	  #-hda poky/build/tmp/deploy/images/raspberrypi4-64/core-image-minimal-raspberrypi4-64.rpi-sdimg \
   	 ;;
 
 
