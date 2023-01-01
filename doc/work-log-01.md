@@ -20,6 +20,8 @@ FILES_${PN}
 ./qemu.sh x86-raspi
 
 #3 
+cd poky/
+source oe-init-build-env
 bitbake core-image-minimal
 
 

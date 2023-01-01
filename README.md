@@ -4,6 +4,10 @@
 Here create a container for yocto, refer
 https://tutorialadda.com/yocto/quick-start-your-first-yocto-project-build
 
+cd /home/richard/work/2022/yocto/poky
+source oe-init-build-env
+bitbake core-image-minimal
+
 
 #in fact we did not use docker, just use ~/work/2022/yocto/poky
 ```
